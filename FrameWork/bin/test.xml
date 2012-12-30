@@ -1,0 +1,5 @@
+<root>
+	<image name="test" loc="test.png">
+	    <sheet name="testsheet" tilew="10" tileh="10" />
+	</image>
+</root>
