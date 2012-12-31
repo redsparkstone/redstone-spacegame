@@ -1,0 +1,18 @@
+<resources>
+
+<sheet name="test" loc="test.png" tilew="64" tileh="64" space="1" />
+<music name="test" loc="mTest.ogg" />
+<music name="test2" loc="mTest2.ogg" />
+
+<track name="track1">
+	<song ref="test" />
+	<song ref="test2" />
+</track>
+
+<animation name="rot" sheet="test">
+	<frame x="0" y="0" dir="1000" />
+	<frame x="1" y="0" dir="500" />
+	<frame x="2" y="0" dir="200" />
+</animation>
+
+</resources>
