@@ -1,5 +1,6 @@
 package RedStone.SpaceGame;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -10,8 +11,9 @@ import RedStone.Base.Camera;
 import RedStone.Base.Entity;
 import RedStone.Base.ResourseManager;
 import RedStone.Base.World;
+import TWLSlick.BasicTWLGameState;
 
-public class PlayingState extends BasicGameState {
+public class PlayingState extends BasicTWLGameState {
 	World world = new World();
 	Camera cam;
 	boolean pause = false;
@@ -22,7 +24,7 @@ public class PlayingState extends BasicGameState {
 		ResourseManager.load("res");
 
 		world.init();
-		cam = new Camera(0, 0, world);
+		cam = new Camera(0, 0,400,400, world);
 
 		Entity ent = new Entity();
 		ent.setX(5);
@@ -30,6 +32,8 @@ public class PlayingState extends BasicGameState {
 
 		ent.add(new TestComp());
 		world.add(ent);
+		
+		ResourseManager.playTrack("track1");
 	}
 
 	@Override

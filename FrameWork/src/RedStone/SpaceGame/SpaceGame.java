@@ -1,11 +1,16 @@
 package RedStone.SpaceGame;
 
+import java.net.URL;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.util.ResourceLoader;
 
-public class SpaceGame extends StateBasedGame {
+import TWLSlick.TWLStateBasedGame;
+
+public class SpaceGame extends TWLStateBasedGame {
 
 	public static void main(String[] args) {
 		AppGameContainer agc;
@@ -27,6 +32,11 @@ public class SpaceGame extends StateBasedGame {
 	public void initStatesList(GameContainer gc) throws SlickException {
 		addState(new PlayingState());
 
+	}
+
+	@Override
+	protected URL getThemeURL() {
+		return ResourceLoader.getResource("gui/theme.xml");
 	}
 
 }

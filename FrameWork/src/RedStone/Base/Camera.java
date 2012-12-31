@@ -7,30 +7,47 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Camera {
-	private float x, y;
+	private float x = 0, y = 0,
+		horizontalScale = 1,
+		verticalScale = 1;
 	private World world;
-	private int frameX, frameY, frameW, frameH;
+	private int screenX, screenY, screenW, screenH;
 	private Image buffer;
 
-	public Camera(float x, float y, World world) {
-		this.x = x;
-		this.y = y;
+	public Camera(int screenX,int screenY,int screenW,int screenH, World world) {
+		setScreenX(screenX);
+		setScreenY(screenY);
+		setScreenW(screenW);
+		setScreenH(screenH);
+		initBuffer();
 		this.world = world;
 	}
 
 	public Camera() {
 		x = 0;
 		y = 0;
+		initBuffer();
 	}
 
 	protected void initBuffer() {
 		try {
-			buffer = new Image(frameW, frameH);
+			buffer = new Image(screenW, screenH);
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
 	}
-
+	public void setScreenX(int x){
+		screenX = x;
+	}
+	public void setScreenY(int y){
+		screenY = y;
+	}
+	public void setScreenW(int w){
+		screenW = w;
+	}
+	public void setScreenH(int h){
+		screenH = h;
+	}
 	public void setX(float x) {
 		this.x = x;
 	}
@@ -51,9 +68,18 @@ public class Camera {
 		return y;
 	}
 
-	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) {
-		for (Entity ent : world.entitys) {
-			ent.render(world, this, gc, sbg, g);
+	public void render(GameContainer gc, StateBasedGame sbg, Graphics frame) {
+		try {
+			Graphics g = buffer.getGraphics();
+			g.clear();
+			g.scale(horizontalScale, verticalScale);
+			g.translate(x, y);
+			for (Entity ent : world.entitys) {
+				ent.render(world, this, gc, sbg, g);
+			}
+			frame.drawImage(buffer, screenX, screenY);
+		} catch (SlickException e) {
+			e.printStackTrace();
 		}
 	}
 }
