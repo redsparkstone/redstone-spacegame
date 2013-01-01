@@ -37,6 +37,7 @@ public class PlayingState extends BasicTWLGameState {
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
 		if (!pause) {
+			cam.update(gc);
 			world.update(gc, sbg);
 		}
 	}

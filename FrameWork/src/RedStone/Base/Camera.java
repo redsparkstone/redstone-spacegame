@@ -3,6 +3,7 @@ package RedStone.Base;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -13,7 +14,8 @@ public class Camera {
 	private World world;
 	private int screenX, screenY, screenW, screenH;
 	private Image buffer;
-
+	private int state = 1;
+	private float speed = 3;
 	public Camera(int screenX,int screenY,int screenW,int screenH, World world) {
 		setScreenX(screenX);
 		setScreenY(screenY);
@@ -80,6 +82,25 @@ public class Camera {
 			frame.drawImage(buffer, screenX, screenY);
 		} catch (SlickException e) {
 			e.printStackTrace();
+		}
+	}
+	public void update(GameContainer gc){
+		Input input = gc.getInput();
+		switch(state){
+		case 1:
+			if(input.isKeyDown(Input.KEY_UP)){
+				y+=speed;
+			}
+			if(input.isKeyDown(Input.KEY_DOWN)){
+				y-=speed;
+			}
+			if(input.isKeyDown(Input.KEY_LEFT)){
+				x+=speed;
+			}
+			if(input.isKeyDown(Input.KEY_RIGHT)){
+				x-=speed;
+			}
+			break;
 		}
 	}
 }

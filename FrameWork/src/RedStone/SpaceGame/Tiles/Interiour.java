@@ -6,6 +6,7 @@ import RedStone.Base.Tile;
 
 public class Interiour extends Tile{
 public Interiour(){
-	add(new SolidColor(Color.white,Color.red,1));
+	add(new SolidColor(Color.white,Color.lightGray,1));
 }
+
 }
