@@ -8,6 +8,6 @@ public class Hull extends Tile {
 	public static final int price = 40;
 	public Hull(){
 		setSolid(true);
-		add(new SolidColor(Color.gray));
+		add(new SolidColor(Color.darkGray));
 	}
 }

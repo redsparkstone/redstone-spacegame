@@ -6,9 +6,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import RedStone.Base.Camera;
-import RedStone.Base.Entity;
 import RedStone.Base.ResourseManager;
-import RedStone.Base.World;
 import TWLSlick.BasicTWLGameState;
 
 public class PlayingState extends BasicTWLGameState {
@@ -20,16 +18,11 @@ public class PlayingState extends BasicTWLGameState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		ResourseManager.load("res");
-		
+		world.init();
 		
 		cam = new Camera(0, 0,600,600, world);
 		
-		Entity ent = new Entity();
-		ent.setX(5);
-		ent.setY(5);
-		
-		ent.add(new TestComp());
-		world.add(ent);
+		MapLoader.defaltMap(world);
 		
 		ResourseManager.playTrack("track1");
 	}
