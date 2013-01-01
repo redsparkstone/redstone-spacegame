@@ -17,6 +17,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Entity {
 	private List<Component> components;
 	private Stack<Component> buffin, buffout;
+	private boolean solid = false;
 	private float x, y;
 
 	/**
@@ -122,5 +123,21 @@ public class Entity {
 	 */
 	public float getY() {
 		return y;
+	}
+	
+	public int getTileX(){
+		return (int) (getX()/World.tileSize);
+	}
+	
+	public int getTileY(){
+		return (int) (getY()/World.tileSize);
+	}
+	
+	public boolean isSolid(){
+		return solid;
+	}
+	
+	public void setSolid(boolean solid){
+		this.solid=solid;
 	}
 }
